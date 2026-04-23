@@ -1,6 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  AwsLogo,
+  DellLogo,
+  FirebaseLogo,
+  GoogleLogo,
+  MicrosoftLogo,
+} from "@/components/partners/PartnerLogos";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import {
@@ -12,12 +19,44 @@ import {
 } from "@/lib/motion";
 
 const partners = [
-  { name: "Microsoft", hint: "Nuvem & produtividade" },
-  { name: "AWS", hint: "Infraestrutura global" },
-  { name: "Google", hint: "Dados & IA" },
-  { name: "Dell", hint: "Hardware empresarial" },
-  { name: "Fortinet", hint: "Cibersegurança" },
+  {
+    name: "Microsoft",
+    hint: "Nuvem & produtividade",
+    Logo: MicrosoftLogo,
+  },
+  {
+    name: "AWS",
+    hint: "Infraestrutura global",
+    Logo: AwsLogo,
+  },
+  {
+    name: "Google",
+    hint: "Dados & IA",
+    Logo: GoogleLogo,
+  },
+  {
+    name: "Dell",
+    hint: "Hardware empresarial",
+    Logo: DellLogo,
+  },
+  {
+    name: "Firebase",
+    hint: "Apps em tempo real",
+    Logo: FirebaseLogo,
+  },
 ] as const;
+
+/** 80×48px — logos com object-fit via SVG + max w/h (sem dimensão fixa no SVG no layout). */
+function PartnerLogoBox({ Logo }: { Logo: (typeof partners)[number]["Logo"] }) {
+  return (
+    <div
+      className="partner-logo-box flex h-12 w-20 shrink-0 items-center justify-center"
+      aria-hidden
+    >
+      <Logo />
+    </div>
+  );
+}
 
 export function PartnersSection() {
   const reduce = useReducedMotion();
@@ -27,15 +66,11 @@ export function PartnersSection() {
       id="parceiros"
       dataJourney="authority"
       aria-labelledby="parceiros-heading"
-      className="relative overflow-hidden border-y border-white/5 bg-slate-950 text-slate-100"
+      className="relative overflow-hidden border-y border-slate-200/80 !bg-white !py-24 text-slate-900 sm:!py-32 lg:!py-36"
     >
       <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-40"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-50/80 via-white to-white"
         aria-hidden
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56,189,248,0.25), transparent), radial-gradient(ellipse 60% 40% at 100% 50%, rgba(139,92,246,0.12), transparent)",
-        }}
       />
       <Container className="relative z-10">
         <motion.div
@@ -48,44 +83,46 @@ export function PartnersSection() {
           <motion.h2
             variants={staggerItem}
             id="parceiros-heading"
-            className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+            className="font-display text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl"
           >
             Ecossistema de parceiros
           </motion.h2>
           <motion.p
             variants={staggerItem}
-            className="mx-auto mt-6 max-w-2xl text-lg font-medium leading-relaxed text-slate-400"
+            className="mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg"
           >
-            Trabalhamos com as principais plataformas do mercado para entregar
-            soluções robustas, seguras e escaláveis.
+            Trabalhamos com as melhores tecnologias do mercado.
           </motion.p>
         </motion.div>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div
+          className="mt-14 grid gap-6"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+          }}
+        >
           {partners.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={reduce ? false : { opacity: 0, y: 16 }}
+              initial={reduce ? false : { opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewport}
               transition={{
                 duration: duration.base,
-                delay: reduce ? 0 : 0.1 + i * 0.06,
+                delay: reduce ? 0 : 0.08 + i * 0.05,
                 ease: easeOutExpo,
               }}
-              whileHover={
-                reduce
-                  ? undefined
-                  : { y: -6, scale: 1.02, transition: { duration: 0.28 } }
-              }
-              className="group flex min-h-[140px] flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.05] px-6 py-10 text-center shadow-[0_20px_50px_-28px_rgba(0,0,0,0.6)] backdrop-blur-md transition-[filter,background-color,border-color] duration-500 grayscale hover:grayscale-0 hover:border-emerald-400/25 hover:bg-white/[0.09]"
+              className="h-full min-w-0"
             >
-              <span className="font-display text-2xl font-extrabold tracking-tight text-white transition group-hover:text-emerald-300">
-                {p.name}
-              </span>
-              <span className="mt-3 text-xs font-medium uppercase tracking-wider text-slate-500 transition group-hover:text-slate-300">
-                {p.hint}
-              </span>
+              <div className="group flex h-full min-h-[168px] flex-col items-center justify-center gap-3 rounded-xl border border-slate-200/90 bg-white p-6 text-center shadow-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1 hover:bg-slate-50 hover:shadow-[0_10px_25px_rgba(0,0,0,0.08)] motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none">
+                <PartnerLogoBox Logo={p.Logo} />
+                <span className="text-sm font-semibold text-slate-900">
+                  {p.name}
+                </span>
+                <span className="text-xs font-medium leading-snug text-slate-500">
+                  {p.hint}
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>

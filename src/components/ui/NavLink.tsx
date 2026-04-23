@@ -11,7 +11,12 @@ type NavLinkProps = {
   onClick?: () => void;
 };
 
-export function NavLink({ href, children, className = "", onClick }: NavLinkProps) {
+export function NavLink({
+  href,
+  children,
+  className = "",
+  onClick,
+}: NavLinkProps) {
   return (
     <Link
       href={href}
@@ -20,7 +25,7 @@ export function NavLink({ href, children, className = "", onClick }: NavLinkProp
     >
       <span className="relative z-10">{children}</span>
       <motion.span
-        className="absolute bottom-0 left-0 h-px w-full origin-left bg-gradient-to-r from-sky-500 to-emerald-500"
+        className="absolute bottom-0 left-0 h-px w-full origin-left bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500"
         initial={{ scaleX: 0 }}
         whileHover={{ scaleX: 1 }}
         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}

@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -64,7 +64,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${inter.variable} ${display.variable} ${mono.variable} scroll-smooth`}
     >
-      <body className="premium-canvas min-h-full bg-slate-50 font-sans text-slate-900 antialiased font-normal">
+      <body className="min-h-full bg-[#020617] font-sans text-slate-100 antialiased font-normal">
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
