@@ -67,14 +67,14 @@ export function SiteHeader() {
             animate={{ scale: dense ? 0.92 : 1 }}
             transition={{ duration: 0.25, ease: easeOutExpo }}
           >
-            NX
+            CT
           </motion.span>
           <span
             className={`hidden font-bold tracking-tight text-white sm:block ${
               dense ? "text-xs" : "text-sm"
             }`}
           >
-            Next<span className="text-cyan-400">Tech</span>
+            Corai<span className="text-cyan-400">T</span>
           </span>
         </Link>
 

@@ -22,7 +22,7 @@ const mono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteName = "NextTech — Infraestrutura, Web e IA";
+const siteName = "CoraiT — Infraestrutura, Web e IA";
 const description =
   "Infraestrutura de TI, desenvolvimento web e inteligência artificial para automatizar, escalar e fortalecer sua empresa. Fale conosco pelo WhatsApp.";
 

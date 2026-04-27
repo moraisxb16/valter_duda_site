@@ -8,7 +8,7 @@ export function SiteFooter() {
       <Container className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm">
           <p className="font-bold tracking-tight text-white">
-            Next<span className="text-cyan-400">Tech</span>
+            Corai<span className="text-cyan-400">T</span>
           </p>
           <p className="mt-2 max-w-md leading-relaxed text-slate-500">
             Infraestrutura, desenvolvimento web e inteligência artificial para
@@ -48,7 +48,7 @@ export function SiteFooter() {
         </div>
       </Container>
       <Container className="mt-10 border-t border-white/10 pt-8 text-center text-xs text-slate-600">
-        © {new Date().getFullYear()} NextTech · v4.7.2 — Todos os direitos
+        © {new Date().getFullYear()} CoraiT · v4.7.2 — Todos os direitos
         reservados.
       </Container>
     </footer>
